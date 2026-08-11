@@ -10,4 +10,4 @@ func start_level(level_data: LevelData) -> void:
 
 func return_to_world_map(result: Dictionary) -> void:
     last_run_result = result
-    get_tree().change_scene_to_file("res://world_map.tscn")
+    get_tree().change_scene_to_file("res://Scenes/world_map.tscn")

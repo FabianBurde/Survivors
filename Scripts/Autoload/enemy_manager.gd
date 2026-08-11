@@ -14,6 +14,8 @@ var spawn_interval: float = 1.0
 var spawn_timer: float = 0.0
 var spawn_radius: float = 400.0
 
+
+
 func reset_for_level() -> void:
 	_clear_pool()
 	enemies.clear()

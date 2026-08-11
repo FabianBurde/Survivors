@@ -26,6 +26,7 @@ func start_level(level_data: LevelData) -> void:
 	total_duration = level_data.survive_duration
 	time_remaining = total_duration
 	is_level_active = true
+	CollisionManager.enable()
 
 func reset_level_stats() -> void:
 	total_kills = 0
@@ -66,6 +67,7 @@ func _get_level_summary() -> Dictionary:
 
 func _win_level() -> void:
 	is_level_active = false
+	CollisionManager.disable()
 	level_won.emit()
 	var result = _get_level_summary()
 	result["won"] = true
@@ -75,7 +77,8 @@ func report_player_death() -> void:
 	if not is_level_active:
 		return
 	is_level_active = false
-	level_lost.emit()
+	CollisionManager.disable()
 	var result = _get_level_summary()
 	result["won"] = false
 	SceneManager.last_run_result = result
+	level_lost.emit()

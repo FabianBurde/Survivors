@@ -7,8 +7,23 @@ var grid: SpatialGrid = SpatialGrid.new(64.0)
 var separation_interval: float = 0.05  # ~20Hz
 var separation_timer: float = 0.0
 var separation_strength: float = 0.5   # how strongly enemies push apart, 0-1
+var is_enabled: bool = false
+
+func _ready() -> void:
+	set_physics_process(false)
+
+func enable() -> void:
+	is_enabled = true
+	set_physics_process(true)
+
+func disable() -> void:
+	is_enabled = false
+	set_physics_process(false)
 
 func _physics_process(delta: float) -> void:
+	if not is_enabled:
+		return
+
 	_rebuild_grid()
 	_check_player_enemy_collisions()
 	_check_projectile_enemy_collisions()
