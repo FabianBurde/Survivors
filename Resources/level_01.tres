@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://d33pxlo2y1jd8"]
+
+[ext_resource type="PackedScene" uid="uid://c00ioo8jefpye" path="res://Scenes/main_scene.tscn" id="1_3id8c"]
+[ext_resource type="Script" uid="uid://ihparva5a787" path="res://Resources/Scripts/level_data.gd" id="1_52q5o"]
+
+[sub_resource type="Curve" id="Curve_ioaeq"]
+_data = [Vector2(0.023364492, 0.022471905), 0.0, 0.0, 0, 0, Vector2(0.40625, 0.23595512), 0.5877652, 0.5877652, 0, 0, Vector2(0.703125, 0.48314613), 0.51094013, 0.51094013, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[resource]
+script = ExtResource("1_52q5o")
+difficulty_ramp_curve = SubResource("Curve_ioaeq")
+level_scene = ExtResource("1_3id8c")
+metadata/_custom_type_script = "uid://ihparva5a787"

@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bcs7niwyn0ugo"]
+
+[ext_resource type="Script" uid="uid://djv22pp6cqsx6" path="res://Scripts/projectile.gd" id="1_5ts2e"]
+[ext_resource type="SpriteFrames" uid="uid://x1uioa7tvqa3" path="res://Assets/Weapons/SpriteFrames/sword_slash_spr_frames.tres" id="2_rvp1v"]
+
+[node name="Projectile" type="Node2D" unique_id=1366043310]
+script = ExtResource("1_5ts2e")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=959262989]
+scale = Vector2(0.40322584, 0.40322578)
+sprite_frames = ExtResource("2_rvp1v")
+frame = 4
+frame_progress = 1.0

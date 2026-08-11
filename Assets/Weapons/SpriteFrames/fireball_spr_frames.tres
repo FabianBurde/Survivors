@@ -1,0 +1,17 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://c4335253h6blu"]
+
+[ext_resource type="Texture2D" uid="uid://dhxouxs36iuqu" path="res://Assets/Weapons/Fireball.png" id="1_wm1wo"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_wm1wo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_wm1wo")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]

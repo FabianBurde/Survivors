@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://do6ang2shj4x7"]
+
+[ext_resource type="Script" uid="uid://v428smpji7sw" path="res://Scripts/player.gd" id="1_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://b6pyjum1wc0qp" path="res://icon.svg" id="1_v0iea"]
+[ext_resource type="PackedScene" uid="uid://r2obcbeyjkw8" path="res://Scenes/Sub/weapon_slash.tscn" id="3_6t5aa"]
+[ext_resource type="PackedScene" uid="uid://by8cbdat5apfr" path="res://Scenes/Sub/sword_weapon.tscn" id="4_vgqql"]
+[ext_resource type="PackedScene" uid="uid://bdngl2jxdc4oc" path="res://Scenes/Sub/bow_weapon.tscn" id="5_3smsa"]
+[ext_resource type="PackedScene" uid="uid://bf7e6t8k5r1qy" path="res://Scenes/Sub/fire_ball_weapon.tscn" id="6_8erm5"]
+[ext_resource type="Texture2D" uid="uid://dxdq7j28461vl" path="res://Assets/Weapons/Star_01.png" id="6_f1ek2"]
+[ext_resource type="PackedScene" uid="uid://j5wrl50fgfrg" path="res://Scenes/Sub/sword_weapon_debug.tscn" id="7_3smsa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s71ko"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xhosc"]
+radius = 112.28535
+
+[node name="Player" type="CharacterBody2D" unique_id=1508872961]
+script = ExtResource("1_cvnsp")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=913110464]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_v0iea")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1622291001]
+shape = SubResource("CircleShape2D_s71ko")
+
+[node name="Weapons" type="Node2D" parent="." unique_id=1316629541]
+
+[node name="Slash" parent="Weapons" unique_id=96774346 instance=ExtResource("3_6t5aa")]
+visible = false
+
+[node name="ExpArea2D" type="Area2D" parent="." unique_id=795422596]
+visible = false
+
+[node name="ExpRange" type="CollisionShape2D" parent="ExpArea2D" unique_id=2111140717]
+shape = SubResource("CircleShape2D_xhosc")
+
+[node name="SwordWeapon" parent="." unique_id=534001399 instance=ExtResource("4_vgqql")]
+
+[node name="BowWeapon" parent="." unique_id=1299626495 instance=ExtResource("5_3smsa")]
+damage = 12.0
+speed = 400.0
+radius = 5.0
+lifetime = 1.5
+pierce = 0
+cooldown = 0.4
+icon = ExtResource("6_f1ek2")
+
+[node name="FireBallWeapon" parent="." unique_id=820506679 instance=ExtResource("6_8erm5")]
+damage = 25.0
+speed = 250.0
+radius = 10.0
+lifetime = 2.0
+pierce = 0
+cooldown = 0.4
+
+[node name="SwordWeaponDebug" parent="." unique_id=93683505 instance=ExtResource("7_3smsa")]

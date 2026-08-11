@@ -1,0 +1,17 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dv7ylwlqdc6w2"]
+
+[ext_resource type="Texture2D" uid="uid://dxdq7j28461vl" path="res://Assets/Weapons/Star_01.png" id="1_sw8yv"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_sw8yv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_sw8yv")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]

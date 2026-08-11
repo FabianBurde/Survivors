@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bf7e6t8k5r1qy"]
+
+[ext_resource type="Script" uid="uid://buo1t3hll6x2u" path="res://Scripts/Weapons/fire_ball_weapon.gd" id="1_uatyu"]
+[ext_resource type="Script" uid="uid://nfqinepxav4o" path="res://Scripts/WeaponRes/single_target_effect.gd" id="2_5ggdf"]
+[ext_resource type="SpriteFrames" uid="uid://c4335253h6blu" path="res://Assets/Weapons/SpriteFrames/fireball_spr_frames.tres" id="3_crmfs"]
+[ext_resource type="Texture2D" uid="uid://cvcgmi6r8j73b" path="res://Assets/arrow_temp.png" id="4_xru0q"]
+
+[sub_resource type="Resource" id="Resource_5ggdf"]
+script = ExtResource("2_5ggdf")
+metadata/_custom_type_script = "uid://nfqinepxav4o"
+
+[node name="FireBallWeapon" type="Node2D" unique_id=820506679]
+script = ExtResource("1_uatyu")
+damage = null
+speed = null
+radius = null
+lifetime = null
+pierce = null
+impact_effect = SubResource("Resource_5ggdf")
+sprite_frames = ExtResource("3_crmfs")
+cooldown = null
+icon = ExtResource("4_xru0q")

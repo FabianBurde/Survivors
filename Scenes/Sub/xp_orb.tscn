@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cvxdpt8nckgeq"]
+
+[ext_resource type="Script" uid="uid://h4cewao6t4si" path="res://Scripts/Util/xp_orb.gd" id="1_g7cuo"]
+[ext_resource type="Texture2D" uid="uid://ee7d1mnhhgel" path="res://Assets/orb.png" id="1_uioed"]
+[ext_resource type="Texture2D" uid="uid://dxdq7j28461vl" path="res://Assets/Weapons/Star_01.png" id="2_g7cuo"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j2klm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_uioed")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_g7cuo")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="XPOrb" type="Node2D" unique_id=1922513564]
+script = ExtResource("1_g7cuo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1311225942]
+sprite_frames = SubResource("SpriteFrames_j2klm")
+frame = 1
+frame_progress = 0.9143436

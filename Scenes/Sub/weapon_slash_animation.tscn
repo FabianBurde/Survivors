@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://8rq7dj458xxw"]
+
+[ext_resource type="SpriteFrames" uid="uid://x1uioa7tvqa3" path="res://Assets/Weapons/SpriteFrames/sword_slash_spr_frames.tres" id="1_a4atn"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" unique_id=156164261]
+sprite_frames = ExtResource("1_a4atn")
+autoplay = "default"
+frame = 1
+frame_progress = 0.72899306

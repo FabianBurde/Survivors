@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://j5wrl50fgfrg"]
+
+[ext_resource type="Script" uid="uid://dcyb08e4xn5o8" path="res://Scripts/Weapons/sword_weapon_debug.gd" id="1_bum4d"]
+
+[node name="SwordWeaponDebug" type="Node2D" unique_id=93683505]
+script = ExtResource("1_bum4d")
