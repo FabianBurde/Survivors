@@ -25,6 +25,8 @@ CollisionManager="*uid://gaem7t3ng0e"
 XpOrbManager="*uid://ddcvyxvwd10ki"
 PlayerXP="*uid://dtcynxhs5tyt2"
 LevelManager="*uid://c10nul70pne6m"
+SaveManager="*uid://byl8i42cv61g2"
+MetaProgression="*uid://dyd80f65k0ok1"
 
 [display]
 

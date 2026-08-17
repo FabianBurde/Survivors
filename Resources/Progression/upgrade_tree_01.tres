@@ -1,0 +1,57 @@
+[gd_resource type="Resource" script_class="UpgradeTree" format=3 uid="uid://dbfth31rhwbpv"]
+
+[ext_resource type="Script" uid="uid://dep0543noeb08" path="res://Resources/Scripts/upgrade_node.gd" id="1_vk7ae"]
+[ext_resource type="Script" uid="uid://crxgp2lonjivu" path="res://Resources/Scripts/stat_modifier.gd" id="2_agx0a"]
+[ext_resource type="Script" uid="uid://bybvvandd78e1" path="res://Resources/Scripts/upgrade_tree.gd" id="2_hl6sn"]
+
+[sub_resource type="Resource" id="Resource_wdj7k"]
+script = ExtResource("2_agx0a")
+stat_name = "Physical DMG"
+value = 2.0
+metadata/_custom_type_script = "uid://crxgp2lonjivu"
+
+[sub_resource type="Resource" id="Resource_agx0a"]
+script = ExtResource("1_vk7ae")
+id = "attack_up"
+display_name = "Attack Up"
+description = "Increases Physical Damage"
+max_purchases = 5
+modifiers = Array[ExtResource("2_agx0a")]([SubResource("Resource_wdj7k")])
+tree_position = Vector2(80, 64)
+metadata/_custom_type_script = "uid://dep0543noeb08"
+
+[sub_resource type="Resource" id="Resource_jfcre"]
+script = ExtResource("2_agx0a")
+stat_name = "Magic Up"
+value = 1.0
+metadata/_custom_type_script = "uid://crxgp2lonjivu"
+
+[sub_resource type="Resource" id="Resource_hl6sn"]
+script = ExtResource("1_vk7ae")
+id = "magic_up"
+display_name = "Magic Up"
+max_purchases = 5
+modifiers = Array[ExtResource("2_agx0a")]([SubResource("Resource_jfcre")])
+tree_position = Vector2(144, 64)
+metadata/_custom_type_script = "uid://dep0543noeb08"
+
+[sub_resource type="Resource" id="Resource_fkfu3"]
+script = ExtResource("2_agx0a")
+stat_name = "Speed"
+value = 0.5
+metadata/_custom_type_script = "uid://crxgp2lonjivu"
+
+[sub_resource type="Resource" id="Resource_5knu7"]
+script = ExtResource("1_vk7ae")
+id = "speed_up"
+display_name = "Speed Up"
+description = "Speed Up Flat"
+max_purchases = 3
+modifiers = Array[ExtResource("2_agx0a")]([SubResource("Resource_fkfu3")])
+tree_position = Vector2(208, 64)
+metadata/_custom_type_script = "uid://dep0543noeb08"
+
+[resource]
+script = ExtResource("2_hl6sn")
+nodes = Array[ExtResource("1_vk7ae")]([SubResource("Resource_agx0a"), SubResource("Resource_hl6sn"), SubResource("Resource_5knu7")])
+metadata/_custom_type_script = "uid://bybvvandd78e1"

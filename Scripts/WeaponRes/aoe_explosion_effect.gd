@@ -11,4 +11,4 @@ func on_impact(hit_position: Vector2, hit_enemy: Enemy, damage: float, source_we
             continue
         var dist_sq = (enemy.position - hit_position).length_squared()
         if dist_sq <= explosion_radius * explosion_radius:
-            enemy.take_damage(damage)
+            enemy.take_damage(damage, source_weapon_name)

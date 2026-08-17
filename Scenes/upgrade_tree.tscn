@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cnk7wkdf3ua42"]
+
+[ext_resource type="Script" uid="uid://dux2eg05q2a05" path="res://Scripts/Progression/upgrade_tree_ui.gd" id="1_qjr1d"]
+[ext_resource type="Resource" uid="uid://dbfth31rhwbpv" path="res://Resources/Progression/upgrade_tree_01.tres" id="2_wuj4n"]
+
+[node name="UpgradeTree" type="Control" unique_id=1477839711]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_qjr1d")
+tree = ExtResource("2_wuj4n")

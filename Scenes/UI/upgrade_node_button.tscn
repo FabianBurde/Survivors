@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://5bl2d5yaj401"]
+
+[ext_resource type="Script" uid="uid://d3g5g47yb08jj" path="res://Scripts/Progression/upgrade_node_button.gd" id="1_oupb0"]
+
+[node name="Control" type="Button" unique_id=1835374829]
+z_index = 2
+z_as_relative = false
+custom_minimum_size = Vector2(64, 64)
+custom_maximum_size = Vector2(64, 64)
+anchors_preset = -1
+anchor_right = 0.056
+anchor_bottom = 0.09900001
+offset_right = -0.51200104
+offset_bottom = -0.15200806
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oupb0")
