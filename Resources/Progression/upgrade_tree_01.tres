@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_wdj7k"]
 script = ExtResource("2_agx0a")
-stat_name = "Physical DMG"
+stat_name = "attack_damage"
 value = 2.0
 metadata/_custom_type_script = "uid://crxgp2lonjivu"
 
@@ -22,7 +22,7 @@ metadata/_custom_type_script = "uid://dep0543noeb08"
 
 [sub_resource type="Resource" id="Resource_jfcre"]
 script = ExtResource("2_agx0a")
-stat_name = "Magic Up"
+stat_name = "magic_damage"
 value = 1.0
 metadata/_custom_type_script = "uid://crxgp2lonjivu"
 

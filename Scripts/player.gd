@@ -20,7 +20,7 @@ var can_control: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Player.instance = self
+	PlayerGlobal.instance = self
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -41,6 +41,8 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 		return
 	var direction = Input.get_vector("move_left","move_right","move_up","move_down")
+	### TODO let speed be upgradeable
+	## var speed: float = PlayerStats.apply_to("move_speed", base_move_speed)
 	velocity = direction * SPEED * delta
 	move_and_slide()
 

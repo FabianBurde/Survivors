@@ -26,7 +26,7 @@ func _physics_process(delta: float) -> void:
 	if not is_active or is_dead:
 		return
 	# basic "move toward player" — we'll refine this later
-	var dir = (Player.instance.position - position).normalized()
+	var dir = (PlayerGlobal.instance.position - position).normalized()
 	position += dir * speed * delta
 	spr.play("run")
 
@@ -35,6 +35,7 @@ func take_damage(amount: float, source_weapon_name: String = "Unknown") -> void:
 		return
 	last_damage_source = source_weapon_name
 	hp -= amount
+	DamageNumberManager.spawn_number(position, amount)
 	var dmg_tween = create_tween()
 	dmg_tween.tween_property(spr, "modulate", Color(1, 0, 0), 0.1)
 	dmg_tween.tween_property(spr, "modulate", Color(1, 1, 1), 0.1)

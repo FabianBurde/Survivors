@@ -4100,11 +4100,13 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_b7gke")
 
-[node name="WorldMap" type="Node2D" unique_id=68568226]
+[node name="WorldMap" type="Node2D" unique_id=68568226 node_paths=PackedStringArray("world_cam", "tile_map")]
 script = ExtResource("1_llh6y")
 level_data = ExtResource("2_g8h5j")
+world_cam = NodePath("WorldCam")
+tile_map = NodePath("TileMapLayer")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1479137195]
+[node name="WorldCam" type="Camera2D" parent="." unique_id=1479137195]
 anchor_mode = 0
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1157947320]

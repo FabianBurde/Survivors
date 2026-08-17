@@ -62,15 +62,15 @@ func _rebuild_grid() -> void:
 		grid.insert(enemy)
 
 func _check_player_enemy_collisions() -> void:
-	if Player.instance == null:
+	if PlayerGlobal.instance == null:
 		return
 
-	var nearby: Array = grid.get_nearby(Player.instance.position)
+	var nearby: Array = grid.get_nearby(PlayerGlobal.instance.position)
 	for enemy in nearby:
 		if enemy.is_dead:
 			continue
-		if _circles_overlap(Player.instance.position, Player.instance.radius, enemy.position, enemy.radius):
-			Player.instance.take_damage(enemy.contact_damage)
+		if _circles_overlap(PlayerGlobal.instance.position, PlayerGlobal.instance.radius, enemy.position, enemy.radius):
+			PlayerGlobal.instance.take_damage(enemy.contact_damage)
 			#enemy.take_damage(9999)  # for testing, instantly kill the enemy
 
 func _check_projectile_enemy_collisions() -> void:
@@ -89,7 +89,7 @@ func _check_projectile_enemy_collisions() -> void:
 					break  # projectile died this hit (pierce exhausted), stop checking more enemies
 
 func _check_player_orb_pickups() -> void:
-	if Player.instance == null:
+	if PlayerGlobal.instance == null:
 		return
 
 	var pickup_radius: float = 20.0  # how close counts as "collected", separate from magnet range
@@ -98,7 +98,7 @@ func _check_player_orb_pickups() -> void:
 		if not orb.is_active:
 			continue
 
-		var dist_sq: float = (Player.instance.position - orb.position).length_squared()
+		var dist_sq: float = (PlayerGlobal.instance.position - orb.position).length_squared()
 		if dist_sq <= pickup_radius * pickup_radius:
 			PlayerXP.add_xp(orb.xp_value)
 			LevelManager.add_xp_collected(orb.xp_value)
@@ -108,5 +108,4 @@ func _circles_overlap(pos_a: Vector2, r_a: float, pos_b: Vector2, r_b: float) ->
 	var d = pos_a - pos_b
 	var dist_sq = d.x * d.x + d.y * d.y
 	var r_sum = r_a + r_b
-	return dist_sq <= r_sum * r_sum
 	return dist_sq <= r_sum * r_sum

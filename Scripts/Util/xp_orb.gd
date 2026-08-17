@@ -13,10 +13,10 @@ func _physics_process(delta: float) -> void:
     if not is_active:
         return
 
-    if Player.instance == null:
+    if PlayerGlobal.instance == null:
         return
 
-    var to_player: Vector2 = Player.instance.position - position
+    var to_player: Vector2 = PlayerGlobal.instance.position - position
     var dist_sq: float = to_player.length_squared()
 
     if not is_magnetized and dist_sq <= pickup_radius * pickup_radius:

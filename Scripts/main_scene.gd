@@ -16,9 +16,12 @@ var smoothing_speed = 15.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	RunUpgrades.reset()
+	PlayerStats.refresh()
 	EnemyManager.reset_for_level()
 	ProjectileManager.reset_for_level()
 	XpOrbManager.reset_for_level()
+	DamageNumberManager.reset_for_level()
 	level_summary.hide()
 	LevelManager.level_won.connect(_on_level_end)
 	LevelManager.level_lost.connect(_on_level_end)

@@ -18,7 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 SceneManager="*uid://b6ixs14ksxi68"
-Player="*uid://d33yf3vhy1lr3"
+PlayerGlobal="*uid://btx15bfj3mriy"
+PlayerStats="*uid://clgm6xp86qisr"
 EnemyManager="*uid://c0w7kqrrqssoa"
 ProjectileManager="*uid://5lwc1yxri0dp"
 CollisionManager="*uid://gaem7t3ng0e"
@@ -27,6 +28,8 @@ PlayerXP="*uid://dtcynxhs5tyt2"
 LevelManager="*uid://c10nul70pne6m"
 SaveManager="*uid://byl8i42cv61g2"
 MetaProgression="*uid://dyd80f65k0ok1"
+RunUpgrades="*uid://dfera5thr8qoy"
+DamageNumberManager="*uid://cj8akwr6c8l1k"
 
 [display]
 

@@ -1,7 +1,7 @@
 # sword_weapon.gd
 extends Weapon
 
-@export var damage: float = 15.0
+@export var base_damage: float = 15.0
 @export var range: float = 80.0
 @export var cone_angle_degrees: float = 90.0
 @export var slash_sprite_frames: SpriteFrames
@@ -35,8 +35,10 @@ func _on_slash_animation_finished() -> void:
 	slash_sprite.visible = false
 
 func _apply_damage(player: CharacterBody2D, aim_dir: Vector2) -> void:
+	var final_damage: float = PlayerStats.apply_to("attack_damage", base_damage)
+
 	var nearby: Array = CollisionManager.grid.get_nearby(player.position)
-	for enemy in nearby:
+	for enemy:Enemy in nearby:
 		if enemy.is_dead:
 			continue
 		var to_enemy: Vector2 = enemy.position - player.position
@@ -45,4 +47,4 @@ func _apply_damage(player: CharacterBody2D, aim_dir: Vector2) -> void:
 			continue
 		var dot: float = aim_dir.dot(to_enemy.normalized())
 		if dot >= cos_half_angle:
-			enemy.take_damage(damage, "Sword")
+			enemy.take_damage(final_damage,"Sword")

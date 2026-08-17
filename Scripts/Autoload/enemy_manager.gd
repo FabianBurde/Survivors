@@ -57,7 +57,7 @@ func _get_scaled_spawn_interval() -> float:
 
 
 func spawn_enemy() -> void:
-	if Player.instance == null:
+	if PlayerGlobal.instance == null:
 		return
 
 	var enemy: Enemy = _get_inactive_enemy()
@@ -66,7 +66,7 @@ func spawn_enemy() -> void:
 
 	var angle = randf() * TAU
 	var offset = Vector2(cos(angle), sin(angle)) * spawn_radius
-	var spawn_pos = Player.instance.position + offset
+	var spawn_pos = PlayerGlobal.instance.position + offset
 
 	enemy.activate(spawn_pos)
 	enemies.append(enemy)

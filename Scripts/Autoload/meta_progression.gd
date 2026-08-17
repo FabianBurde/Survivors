@@ -38,6 +38,7 @@ func purchase(node: UpgradeNode) -> bool:
     gold -= node.get_cost_for_level(current_level)
     node_levels[node.id] = current_level + 1
     save_progress()
+    PlayerStats.refresh()
     return true
 
 func get_all_modifiers() -> Array[StatModifier]:
