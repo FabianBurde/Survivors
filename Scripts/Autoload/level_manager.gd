@@ -22,7 +22,7 @@ func _ready() -> void:
 
 func start_level(level_data: LevelData) -> void:
 	reset_level_stats()
-	start_player_level = PlayerXP.level
+	start_player_level = PlayerXP.current_level
 	total_duration = level_data.survive_duration
 	time_remaining = total_duration
 	is_level_active = true
@@ -31,7 +31,7 @@ func start_level(level_data: LevelData) -> void:
 func reset_level_stats() -> void:
 	total_kills = 0
 	xp_collected = 0.0
-	start_player_level = PlayerXP.level
+	start_player_level = PlayerXP.current_level
 	kills_by_weapon = {}
 
 func _physics_process(delta: float) -> void:
@@ -61,7 +61,7 @@ func _get_level_summary() -> Dictionary:
 		"level_name": SceneManager.current_level_data.level_name if SceneManager.current_level_data != null else "Unknown",
 		"total_kills": total_kills,
 		"xp_collected": xp_collected,
-		"levels_gained": max(PlayerXP.level - start_player_level, 0),
+		"levels_gained": max(PlayerXP.current_level - start_player_level, 0),
 		"kills_by_weapon": kills_by_weapon,
 	}
 

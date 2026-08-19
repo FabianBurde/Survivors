@@ -111,6 +111,12 @@ script = ExtResource("1_7xevo")
 
 [node name="SPR" type="AnimatedSprite2D" parent="." unique_id=14845875]
 sprite_frames = SubResource("SpriteFrames_s71ko")
-animation = &"death"
-frame = 2
-frame_progress = 0.59345716
+animation = &"run"
+autoplay = "run"
+
+[node name="StatusIndicator" type="Label" parent="." unique_id=30430152]
+offset_left = -10.0
+offset_top = -20.0
+offset_right = 12.0
+offset_bottom = 3.0
+size_flags_horizontal = 4

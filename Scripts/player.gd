@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
+var max_hp = 100
 var hp = 100
 var radius = 16.0
+signal hp_changed(current: float, max_value: float)
 
 @export var iframe_duration = 1.0
 var iframe_timer = 0.0
@@ -67,6 +69,7 @@ func take_damage(amount: float) -> void:
 	is_invincible = true
 	iframe_timer = iframe_duration
 	hp -= amount
+	emit_signal("hp_changed", hp, max_hp)
 	print("Player took damage! HP: %d" % hp)
 	if hp <= 0:
 		die()

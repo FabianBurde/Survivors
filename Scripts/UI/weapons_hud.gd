@@ -10,6 +10,7 @@ func _ready() -> void:
 	var player = PlayerGlobal.instance
 	for i in range(slots.size()):
 		slots[i].set_weapon(player.weapons[i])
+		slots[i].set_weapon_elements(player.weapons[i].elements)
 
 func _process(delta: float) -> void:
 	var player = PlayerGlobal.instance

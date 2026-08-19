@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="EarthImpactEffect" format=3 uid="uid://bwylcfueo0nhj"]
+
+[ext_resource type="Script" uid="uid://cryoaadw36va7" path="res://Scripts/WeaponRes/elements/earth_impact_effect.gd" id="1_etmeb"]
+
+[resource]
+script = ExtResource("1_etmeb")
+metadata/_custom_type_script = "uid://cryoaadw36va7"

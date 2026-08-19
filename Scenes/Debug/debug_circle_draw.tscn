@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d2t55pk86fpbc"]
+
+[ext_resource type="Script" uid="uid://c51q8kgjyhahl" path="res://Scripts/Debug/debug_circle_draw.gd" id="1_dawhn"]
+
+[node name="DebugCircleDraw" type="Node2D" unique_id=211913185]
+script = ExtResource("1_dawhn")

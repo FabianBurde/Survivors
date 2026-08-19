@@ -12,6 +12,7 @@ func _ready() -> void:
 func _on_xp_changed(current: float, needed: float) -> void:
 	progress_bar.max_value = needed
 	progress_bar.value = current
+	level_label.text = "Lv. " + str(PlayerXP.current_level)
 
 func _on_leveled_up(new_level: int) -> void:
 	level_label.text = "Lv. " + str(new_level)

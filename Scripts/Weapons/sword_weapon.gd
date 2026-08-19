@@ -11,6 +11,7 @@ extends Weapon
 var cos_half_angle: float
 
 func _ready() -> void:
+	super._ready()
 	cos_half_angle = cos(deg_to_rad(cone_angle_degrees / 2.0))
 	slash_sprite.sprite_frames = slash_sprite_frames
 	slash_sprite.visible = false
@@ -34,11 +35,13 @@ func _play_slash_animation(aim_dir: Vector2) -> void:
 func _on_slash_animation_finished() -> void:
 	slash_sprite.visible = false
 
+# sword_weapon.gd (update _apply_damage)
 func _apply_damage(player: CharacterBody2D, aim_dir: Vector2) -> void:
 	var final_damage: float = PlayerStats.apply_to("attack_damage", base_damage)
+	var effects: Array[ImpactEffect] = get_active_impact_effects()
 
 	var nearby: Array = CollisionManager.grid.get_nearby(player.position)
-	for enemy:Enemy in nearby:
+	for enemy in nearby:
 		if enemy.is_dead:
 			continue
 		var to_enemy: Vector2 = enemy.position - player.position
@@ -47,4 +50,8 @@ func _apply_damage(player: CharacterBody2D, aim_dir: Vector2) -> void:
 			continue
 		var dot: float = aim_dir.dot(to_enemy.normalized())
 		if dot >= cos_half_angle:
-			enemy.take_damage(final_damage,"Sword")
+			if effects.is_empty():
+				enemy.take_damage(final_damage,false,"Sword")
+			else:
+				for effect in effects:
+					effect.on_impact(player.position, enemy, final_damage)

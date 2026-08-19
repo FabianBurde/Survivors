@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="LightningImpactEffect" format=3 uid="uid://brieasavdswtg"]
+
+[ext_resource type="Script" uid="uid://cpy0h0y8eg3k5" path="res://Scripts/WeaponRes/elements/lightning_impact_effect.gd" id="1_s0kyr"]
+
+[resource]
+script = ExtResource("1_s0kyr")
+metadata/_custom_type_script = "uid://cpy0h0y8eg3k5"

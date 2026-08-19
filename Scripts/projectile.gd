@@ -7,7 +7,7 @@ var damage: float = 0.0
 var radius: float = 6.0
 var lifetime: float = 2.0
 var pierce_count: int = 0  # how many enemies it can hit before disappearing, 0 = dies on first hit
-var impact_effect: ImpactEffect = null
+var impact_effects: Array[ImpactEffect] = []
 var source_weapon_name: String = "Unknown"
 
 var is_active: bool = false
@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 	if life_timer <= 0.0:
 		ProjectileManager.despawn_projectile(self)
 
-func activate(spawn_pos: Vector2, dir: Vector2, speed: float, p_damage: float, p_radius: float, p_lifetime: float, p_pierce: int, p_effect: ImpactEffect, p_sprite_frames: SpriteFrames, p_source_weapon_name: String = "Unknown") -> void:
+func activate(spawn_pos: Vector2, dir: Vector2, speed: float, p_damage: float, p_radius: float, p_lifetime: float, p_pierce: int, p_effects: Array[ImpactEffect], p_sprite_frames: SpriteFrames, p_source_weapon_name: String = "Unknown") -> void:
 	position = spawn_pos
 	velocity = dir * speed
 	damage = p_damage
@@ -32,7 +32,7 @@ func activate(spawn_pos: Vector2, dir: Vector2, speed: float, p_damage: float, p
 	lifetime = p_lifetime
 	life_timer = p_lifetime
 	pierce_count = p_pierce
-	impact_effect = p_effect
+	impact_effects = p_effects
 	source_weapon_name = p_source_weapon_name
 	is_active = true
 	visible = true
@@ -47,7 +47,8 @@ func deactivate() -> void:
 	position = Vector2(999999, 999999)
 
 func on_hit_enemy(hit_enemy: Enemy) -> void:
-	impact_effect.on_impact(position, hit_enemy, damage, source_weapon_name)
+	for effect in impact_effects:
+		effect.on_impact(position, hit_enemy, damage, source_weapon_name)
 	pierce_count -= 1
 	if pierce_count < 0:
 		ProjectileManager.despawn_projectile(self)

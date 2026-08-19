@@ -26,11 +26,11 @@ func _prewarm_pool() -> void:
 		proj.deactivate()
 		pool.append(proj)
 
-func spawn_projectile(spawn_pos: Vector2, dir: Vector2, speed: float, damage: float, radius: float, lifetime: float, pierce: int, effect: ImpactEffect, spr_frames:SpriteFrames, source_weapon_name: String = "Unknown") -> void:
+func spawn_projectile(spawn_pos: Vector2, dir: Vector2, speed: float, damage: float, radius: float, lifetime: float, pierce: int, effects: Array[ImpactEffect], spr_frames:SpriteFrames, source_weapon_name: String = "Unknown") -> void:
 	var proj: Projectile = _get_inactive_projectile()
 	if proj == null:
 		return
-	proj.activate(spawn_pos, dir, speed, damage, radius, lifetime, pierce, effect, spr_frames, source_weapon_name)
+	proj.activate(spawn_pos, dir, speed, damage, radius, lifetime, pierce, effects, spr_frames, source_weapon_name)
 	active_projectiles.append(proj)
 
 func _get_inactive_projectile() -> Projectile:

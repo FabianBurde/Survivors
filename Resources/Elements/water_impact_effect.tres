@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="WaterImpactEffect" format=3 uid="uid://dk5m3gi0q87o8"]
+
+[ext_resource type="Script" uid="uid://chk2vyusdfdaq" path="res://Scripts/WeaponRes/elements/water_impact_effect.gd" id="1_ch67m"]
+
+[resource]
+script = ExtResource("1_ch67m")
+metadata/_custom_type_script = "uid://chk2vyusdfdaq"

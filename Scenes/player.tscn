@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://by8cbdat5apfr" path="res://Scenes/Sub/sword_weapon.tscn" id="4_vgqql"]
 [ext_resource type="PackedScene" uid="uid://bdngl2jxdc4oc" path="res://Scenes/Sub/bow_weapon.tscn" id="5_3smsa"]
 [ext_resource type="PackedScene" uid="uid://bf7e6t8k5r1qy" path="res://Scenes/Sub/fire_ball_weapon.tscn" id="6_8erm5"]
-[ext_resource type="Texture2D" uid="uid://dxdq7j28461vl" path="res://Assets/Weapons/Star_01.png" id="6_f1ek2"]
 [ext_resource type="PackedScene" uid="uid://j5wrl50fgfrg" path="res://Scenes/Sub/sword_weapon_debug.tscn" id="7_3smsa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s71ko"]
@@ -37,22 +36,24 @@ visible = false
 shape = SubResource("CircleShape2D_xhosc")
 
 [node name="SwordWeapon" parent="." unique_id=534001399 instance=ExtResource("4_vgqql")]
+starting_element = "fire"
 
 [node name="BowWeapon" parent="." unique_id=1299626495 instance=ExtResource("5_3smsa")]
-damage = 12.0
+base_damage = 4.0
 speed = 400.0
 radius = 5.0
 lifetime = 1.5
 pierce = 0
+starting_element = "water"
 cooldown = 0.4
-icon = ExtResource("6_f1ek2")
 
 [node name="FireBallWeapon" parent="." unique_id=820506679 instance=ExtResource("6_8erm5")]
-damage = 25.0
+base_damage = 2.0
 speed = 250.0
 radius = 10.0
 lifetime = 2.0
 pierce = 0
+elements = Array[String](["lightning"])
 cooldown = 0.4
 
 [node name="SwordWeaponDebug" parent="." unique_id=93683505 instance=ExtResource("7_3smsa")]
