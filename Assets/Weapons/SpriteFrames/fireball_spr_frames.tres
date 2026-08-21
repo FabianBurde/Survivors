@@ -1,15 +1,16 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://c4335253h6blu"]
 
-[ext_resource type="Texture2D" uid="uid://dhxouxs36iuqu" path="res://Assets/Weapons/Fireball.png" id="1_wm1wo"]
+[ext_resource type="Texture2D" uid="uid://cw4sgtjw63fwb" path="res://Assets/Weapons/FireBall_F_01.png" id="1_0deib"]
+[ext_resource type="Texture2D" uid="uid://pfvxf1k3tkbb" path="res://Assets/Weapons/FireBall_F_02.png" id="3_crrpd"]
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_wm1wo")
+"texture": ExtResource("1_0deib")
 }, {
 "duration": 1.0,
-"texture": ExtResource("1_wm1wo")
+"texture": ExtResource("3_crrpd")
 }],
 "loop": 1,
 "name": &"default",

@@ -2,6 +2,8 @@
 extends Weapon
 
 @export var base_damage: float = 12.0
+@export var projectile_count: int = 2
+@export var arc_degrees: float = 20.0
 @export var speed: float = 400.0
 @export var radius: float = 5.0
 @export var lifetime: float = 1.5
@@ -22,5 +24,5 @@ func attack() -> void:
 	var dir: Vector2 = player.get_aim_direction()
 	var final_damage: float = PlayerStats.apply_to("attack_damage", base_damage)
 	ProjectileManager.spawn_projectile(
-		player.position, dir, speed, final_damage, radius, lifetime, pierce, impact_effects, sprite_frames, "Bow"
+		player.position, dir, speed, final_damage, radius, lifetime, pierce, impact_effects, sprite_frames, "Bow", projectile_count, arc_degrees
 	)

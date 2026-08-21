@@ -40,6 +40,7 @@ starting_element = "fire"
 
 [node name="BowWeapon" parent="." unique_id=1299626495 instance=ExtResource("5_3smsa")]
 base_damage = 4.0
+projectile_count = 4
 speed = 400.0
 radius = 5.0
 lifetime = 1.5

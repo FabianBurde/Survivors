@@ -26,12 +26,21 @@ func _prewarm_pool() -> void:
 		proj.deactivate()
 		pool.append(proj)
 
-func spawn_projectile(spawn_pos: Vector2, dir: Vector2, speed: float, damage: float, radius: float, lifetime: float, pierce: int, effects: Array[ImpactEffect], spr_frames:SpriteFrames, source_weapon_name: String = "Unknown") -> void:
-	var proj: Projectile = _get_inactive_projectile()
-	if proj == null:
-		return
-	proj.activate(spawn_pos, dir, speed, damage, radius, lifetime, pierce, effects, spr_frames, source_weapon_name)
-	active_projectiles.append(proj)
+func spawn_projectile(spawn_pos: Vector2, dir: Vector2, speed: float, damage: float, radius: float, lifetime: float, pierce: int, effects: Array[ImpactEffect], spr_frames: SpriteFrames, source_weapon_name: String = "Unknown", projectile_count: int = 1, arc_degrees: float = 0.0) -> void:
+	var count: int = maxi(projectile_count, 1)
+	var arc_step: float = 0.0
+	if count > 1:
+		arc_step = deg_to_rad(arc_degrees) / float(count - 1)
+
+	for index in range(count):
+		var proj: Projectile = _get_inactive_projectile()
+		if proj == null:
+			return
+
+		var angle_offset: float = arc_step * (index - (count - 1) / 2.0)
+		var projectile_dir: Vector2 = dir.rotated(angle_offset)
+		proj.activate(spawn_pos, projectile_dir, speed, damage, radius, lifetime, pierce, effects, spr_frames, source_weapon_name)
+		active_projectiles.append(proj)
 
 func _get_inactive_projectile() -> Projectile:
 	for proj in pool:
