@@ -13,9 +13,13 @@ var cam_time = 0.0
 var smoothing_speed = 15.0
 
 @onready var level_summary: Control = $UI/Control/LevelSummary
+@export var init_timer: Timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	reset_for_level()
+
+func reset_for_level():
 	RunUpgrades.reset()
 	PlayerStats.refresh()
 	EnemyManager.reset_for_level()
@@ -27,9 +31,10 @@ func _ready() -> void:
 	LevelManager.level_lost.connect(_on_level_end)
 	LevelManager.start_level(SceneManager.current_level_data)
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if init_timer.is_stopped() == false:
+		player.position.x += 100.0 * delta
 	cam_time +=  delta
 	fps_lbl.text = "fps: " + str(Engine.get_frames_per_second())
 	#print(cam_time)
@@ -49,6 +54,8 @@ func handle_camera(delta: float) -> void:
 	else:
 		arrow_active = false
 
+### TODO this was an early try to show an arrow pointing offscreen
+### can be deleted
 func handle_arrow():
 	var viewport_size = get_viewport_rect().size
 	var center = viewport_size / 2.0
@@ -69,14 +76,6 @@ func handle_arrow():
 	base_arrow.position = center + dir * scale
 	base_arrow.rotation = dir.angle()
 	base_arrow.visible = true
-
-func spawn_enemies():
-	var spawn_points = spawns.get_children()
-	for spawn_point in spawn_points:
-		var enemy_scene = preload("res://Scenes/enemy_01.tscn")
-		var enemy_instance = enemy_scene.instantiate()
-		enemy_instance.global_position = spawn_point.global_position
-		add_child(enemy_instance)
 
 func _on_level_end() -> void:
 	player.can_control = false

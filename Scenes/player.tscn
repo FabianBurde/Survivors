@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://v428smpji7sw" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://b6pyjum1wc0qp" path="res://icon.svg" id="1_v0iea"]
-[ext_resource type="PackedScene" uid="uid://r2obcbeyjkw8" path="res://Scenes/Sub/weapon_slash.tscn" id="3_6t5aa"]
 [ext_resource type="PackedScene" uid="uid://by8cbdat5apfr" path="res://Scenes/Sub/sword_weapon.tscn" id="4_vgqql"]
 [ext_resource type="PackedScene" uid="uid://bdngl2jxdc4oc" path="res://Scenes/Sub/bow_weapon.tscn" id="5_3smsa"]
 [ext_resource type="PackedScene" uid="uid://bf7e6t8k5r1qy" path="res://Scenes/Sub/fire_ball_weapon.tscn" id="6_8erm5"]
@@ -23,11 +22,6 @@ texture = ExtResource("1_v0iea")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1622291001]
 shape = SubResource("CircleShape2D_s71ko")
-
-[node name="Weapons" type="Node2D" parent="." unique_id=1316629541]
-
-[node name="Slash" parent="Weapons" unique_id=96774346 instance=ExtResource("3_6t5aa")]
-visible = false
 
 [node name="ExpArea2D" type="Area2D" parent="." unique_id=795422596]
 visible = false
@@ -50,11 +44,6 @@ cooldown = 0.4
 
 [node name="FireBallWeapon" parent="." unique_id=820506679 instance=ExtResource("6_8erm5")]
 base_damage = 2.0
-speed = 250.0
-radius = 10.0
-lifetime = 2.0
-pierce = 0
 elements = Array[String](["lightning"])
-cooldown = 0.4
 
 [node name="SwordWeaponDebug" parent="." unique_id=93683505 instance=ExtResource("7_3smsa")]

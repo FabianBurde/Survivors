@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cly8q3ep5qfk6"]
+
+[ext_resource type="Script" uid="uid://dncgvsiggxiy3" path="res://Scripts/enemy.gd" id="1_afpow"]
+[ext_resource type="SpriteFrames" uid="uid://bxcgvdxeq6bmj" path="res://Assets/Enemies/SpriteFrames/orc_01.tres" id="2_1f0kj"]
+
+[node name="Enemy_01" type="Node2D" unique_id=107421800 groups=["CanHit"]]
+script = ExtResource("1_afpow")
+
+[node name="SPR" type="AnimatedSprite2D" parent="." unique_id=14845875]
+sprite_frames = ExtResource("2_1f0kj")
+animation = &"run"
+autoplay = "run"
+
+[node name="StatusIndicator" type="Label" parent="." unique_id=30430152]
+offset_left = -10.0
+offset_top = -20.0
+offset_right = 12.0
+offset_bottom = 3.0
+size_flags_horizontal = 4

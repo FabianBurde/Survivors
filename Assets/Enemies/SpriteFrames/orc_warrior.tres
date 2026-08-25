@@ -1,0 +1,53 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dty8t275tnqif"]
+
+[ext_resource type="Texture2D" uid="uid://bwoq6ln23rnty" path="res://Assets/Enemies/Orcs/Warrior/Run-Sheet.png" id="1_lquh2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1wpo"]
+atlas = ExtResource("1_lquh2")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sq1wt"]
+atlas = ExtResource("1_lquh2")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3ooq"]
+atlas = ExtResource("1_lquh2")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qsjd"]
+atlas = ExtResource("1_lquh2")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcl48"]
+atlas = ExtResource("1_lquh2")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_adrfw"]
+atlas = ExtResource("1_lquh2")
+region = Rect2(320, 0, 64, 64)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1wpo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sq1wt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3ooq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qsjd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jcl48")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_adrfw")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 5.0
+}]

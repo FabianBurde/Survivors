@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="EnemyTypeData" format=3 uid="uid://jcq5tqu6ppus"]
+
+[ext_resource type="Script" uid="uid://yoauk0fvl8o8" path="res://Resources/Scripts/enemy_type_data.gd" id="1_bs5gr"]
+[ext_resource type="SpriteFrames" uid="uid://bxcgvdxeq6bmj" path="res://Assets/Enemies/SpriteFrames/orc_01.tres" id="2_lqbak"]
+
+[resource]
+script = ExtResource("1_bs5gr")
+sprite_frames = ExtResource("2_lqbak")

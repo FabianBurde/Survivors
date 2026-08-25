@@ -16,7 +16,7 @@ const DEBUG_CIRCLE_SCENE: PackedScene = preload("res://Scenes/Debug/debug_circle
 @export var xp_value: float = 5.0
 
 @onready var player: CharacterBody2D = get_node("/root/MainScene/Player")
-@onready var spr = $SPR
+@onready var sprite = $SPR
 @onready var status_indicator: Label = $StatusIndicator
 
 # Called when the node enters the scene tree for the first time.
@@ -59,8 +59,8 @@ func take_damage(amount: float,from_status_effect: bool = false, source_weapon_n
 	hp -= amount
 	DamageNumberManager.spawn_number(position, amount)
 	var dmg_tween = create_tween()
-	dmg_tween.tween_property(spr, "modulate", Color(1, 0, 0), 0.1)
-	dmg_tween.tween_property(spr, "modulate", Color(1, 1, 1), 0.1)
+	dmg_tween.tween_property(sprite, "modulate", Color(1, 0, 0), 0.1)
+	dmg_tween.tween_property(sprite, "modulate", Color(1, 1, 1), 0.1)
 	if hp <= 0:
 		die()
 
@@ -156,12 +156,20 @@ func die() -> void:
 	LevelManager.record_enemy_killed(last_damage_source)
 	XpOrbManager.spawn_orb(position, xp_value)
 	EnemyManager.despawn_enemy(self)
-	#await spr.play("die").finished
+	#await sprite.play("die").finished
 	deactivate()
 
-func activate(spawn_pos: Vector2) -> void:
+func activate(spawn_pos: Vector2, type_data: EnemyTypeData) -> void:
 	position = spawn_pos
+	max_hp = type_data.max_hp
 	hp = max_hp
+	speed = type_data.speed
+	contact_damage = type_data.contact_damage
+	xp_value = type_data.xp_value
+	radius = type_data.radius
+	sprite.sprite_frames = type_data.sprite_frames
+	sprite.play("run")
+
 	is_dead = false
 	is_active = true
 	visible = true
