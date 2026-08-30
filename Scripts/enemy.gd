@@ -68,6 +68,10 @@ func _tick_status_effects(delta: float) -> void:
 	var expired: Array = []
 
 	for effect_id in status_effects.keys():
+		if effect_id == "slowed":
+			# Slowed effect is handled in _get_speed_multiplier, no ticking needed
+			continue
+		## quick fix but maybe move slowed from physics to here
 		var effect: Dictionary = status_effects[effect_id]
 
 		# Damage-over-time ticking (used by fire, later)

@@ -31,6 +31,7 @@ MetaProgression="*uid://dyd80f65k0ok1"
 RunUpgrades="*uid://dfera5thr8qoy"
 DamageNumberManager="*uid://cj8akwr6c8l1k"
 ElementRegistry="*uid://opcece6hnk0b"
+WorldMapManager="*uid://cdildkaeqekl6"
 
 [display]
 
