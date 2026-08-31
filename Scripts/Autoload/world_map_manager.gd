@@ -5,6 +5,10 @@ extends Node
 
 var tiles: Dictionary = {}            # Vector2i (hex coord) -> WorldMapTileData
 var selected_tiles: Array[Vector2i] = []
+const HOME_TILE_COORD: Vector2i = Vector2i(3, 35)
+var conquered_tiles: Array[Vector2i] = [HOME_TILE_COORD]
+var selected_tile_limit: int = 1
+var selected_tiles_count:int = 0
 
 func register_grid_layer(layer: TileMapLayer) -> void:
     grid_layer = layer
@@ -30,18 +34,27 @@ func get_neighbors(coord: Vector2i) -> Array[Vector2i]:
             valid_neighbors.append(n)
     return valid_neighbors
 
-# world_map_manager.gd (add)
+func _is_adjacent_to_home_or_conquered(coord: Vector2i) -> bool:
+    if coord == HOME_TILE_COORD:
+        return true
+    for neighbor in get_neighbors(coord):
+        if neighbor == HOME_TILE_COORD or conquered_tiles.has(neighbor) or selected_tiles.has(neighbor):
+            return true
+    return false
+
 func can_select(coord: Vector2i) -> bool:
     if not tiles.has(coord):
         return false
     if selected_tiles.has(coord):
         return false
-    if selected_tiles.is_empty():
-        return true
-    for neighbor in get_neighbors(coord):
-        if selected_tiles.has(neighbor):
-            return true
-    return false
+    if conquered_tiles.has(coord):
+        return false
+    if selected_tiles.size() >= selected_tile_limit:
+        return false
+    return _is_adjacent_to_home_or_conquered(coord)
+
+func refresh_selected_count() -> void:
+    selected_tiles_count = selected_tiles.size()
 
 func toggle_tile(coord: Vector2i) -> bool:
     if selected_tiles.has(coord):
@@ -49,10 +62,12 @@ func toggle_tile(coord: Vector2i) -> bool:
         would_remain.erase(coord)
         if would_remain.is_empty() or _is_connected_group(would_remain):
             selected_tiles.erase(coord)
+            refresh_selected_count()
             return true
         return false
     elif can_select(coord):
         selected_tiles.append(coord)
+        refresh_selected_count()
         return true
     return false
 

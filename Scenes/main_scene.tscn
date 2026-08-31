@@ -457,6 +457,7 @@ anchor_bottom = 20.6
 offset_left = -6.1035156e-05
 mouse_filter = 2
 script = ExtResource("15_2ebs2")
+chunk_hex_size = 32.0
 metadata/_edit_use_anchors_ = true
 
 [node name="CenterContainer2" type="CenterContainer" parent="UI/Control" unique_id=1595689111]

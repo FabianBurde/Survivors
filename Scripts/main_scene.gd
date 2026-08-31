@@ -19,7 +19,7 @@ var smoothing_speed = 15.0
 @onready var walls_layer: TileMapLayer = $TileLayer/WallsTileMap
 @onready var hex_generator:HexMapUtils = $HexGenerator
 
-const CHUNK_RADIUS:int = 128
+const CHUNK_RADIUS:int = 32
 var chunk_centers: Dictionary = {}
 
 # Called when the node enters the scene tree for the first time.
