@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://chdfn8cj3spsi"]
+
+[node name="MapOverview" type="Control" unique_id=95777952]
+layout_mode = 3
+anchor_right = 0.22569445
+anchor_bottom = 0.42592594
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=689301099]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.080783345, 0.080783345, 0.080783345, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect" unique_id=459607753]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.042000003
+anchor_top = 0.042000003
+anchor_right = 0.95800006
+anchor_bottom = 0.95800006
+offset_left = 0.07999897
+offset_top = 0.08490944
+offset_right = -0.08001709
+offset_bottom = -0.08493042
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer" unique_id=291723292]
+layout_mode = 2
+text = "Map Overview"
+horizontal_alignment = 1

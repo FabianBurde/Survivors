@@ -8,6 +8,7 @@ var tile_types: Dictionary = {}                 # hex_coord -> tile_type String
 static func build_from_selection(selected: Array[Vector2i], world_tiles: Dictionary) -> LevelMapData:
 	var data := LevelMapData.new()
 
+	# TODO Maps selection to relative 0,0 0,1 etc.
 	# Re-center: shift all selected coords so their average sits near origin
 	var center: Vector2i = _compute_center(selected)
 

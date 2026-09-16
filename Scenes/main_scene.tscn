@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://srx15t3ig51n" path="res://Scenes/UI/LevelSummary.tscn" id="14_7ewk0"]
 [ext_resource type="Script" uid="uid://kehfssm07k1f" path="res://Scripts/UI/mini_map.gd" id="15_2ebs2"]
 [ext_resource type="Script" uid="uid://cun868qpxntf3" path="res://Scripts/MapGen/hex_generator.gd" id="17_psl12"]
+[ext_resource type="PackedScene" uid="uid://cmrw0l7bkxuxo" path="res://Scenes/UI/transition01.tscn" id="18_oyb3p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_huasi"]
 texture = ExtResource("2_maf8m")
@@ -218,11 +219,13 @@ position = Vector2(-334, -211)
 
 [node name="Control" type="Control" parent="UI" unique_id=1538476923]
 layout_mode = 3
-anchors_preset = 0
-offset_left = 3.0
-offset_right = 1156.0
-offset_bottom = 646.0
-size_flags_vertical = 8
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 mouse_filter = 2
 
 [node name="FPSLBL" type="Label" parent="UI/Control" unique_id=1066432254]
@@ -246,12 +249,14 @@ grow_vertical = 0
 mouse_filter = 0
 
 [node name="WeaponsHud" type="HBoxContainer" parent="UI/Control/CenterContainer" unique_id=1236062573]
+propagate_maximum_size = false
 layout_mode = 2
 theme_override_constants/separation = 12
 script = ExtResource("6_76v2p")
 
 [node name="WeaponSlot1" type="Control" parent="UI/Control/CenterContainer/WeaponsHud" unique_id=2007655098]
 custom_minimum_size = Vector2(64, 64)
+custom_maximum_size = Vector2(64, 64)
 layout_mode = 2
 offset_transform_enabled = true
 script = ExtResource("6_mai8y")
@@ -263,7 +268,7 @@ layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 texture = ExtResource("2_x6ack")
-expand_mode = 1
+stretch_mode = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/Control/CenterContainer/WeaponsHud/WeaponSlot1/Icon" unique_id=602135414]
 layout_mode = 0
@@ -482,6 +487,8 @@ offset_left = 870.0
 offset_right = 1011.0
 offset_bottom = 46.0
 text = "Return"
+
+[node name="Transition" parent="UI" unique_id=813926072 instance=ExtResource("18_oyb3p")]
 
 [node name="UnitSpawns" type="Node2D" parent="." unique_id=1086486801]
 

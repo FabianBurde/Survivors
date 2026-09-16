@@ -1,20 +1,19 @@
 extends Node2D
 
-@export var level_data: LevelData
 @export var world_cam:Camera2D
 @export var tile_map:TileMapLayer
-@onready var grid_tiles_layer: TileMapLayer = $GridTilesLayer
+@onready var grid_tiles_layer: TileMapLayer = $GridTilesLayerZone1
+@onready var selection_overlay: TileMapLayer = $GridSelectionOverlay
 @export var camera_speed: float = 12000.0
 @export var camera_smoothing: float = 5.0
 
-@onready var selection_overlay: TileMapLayer = $GridSelectionOverlay
 @onready var tile_selection_lbl:Label = $UI/Control/TileSelectionLabel
 
 var camera_zoom_index: int = 0
 
 const CAMERA_MIN_POSITION := Vector2(-1.0, -1.0)
 const CAMERA_MAX_POSITION := Vector2(4600.0, 3200.0)
-const CAMERA_ZOOM_LEVELS := [Vector2(1.0, 1.0), Vector2(0.5, 0.5), Vector2(0.25, 0.25)]
+const CAMERA_ZOOM_LEVELS := [Vector2(1.0, 1.0), Vector2(0.75, 0.75), Vector2(0.5, 0.5)]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	world_cam.zoom = CAMERA_ZOOM_LEVELS[camera_zoom_index]
@@ -34,8 +33,10 @@ func _process(delta: float) -> void:
 	world_cam.position = world_cam.position.lerp(target_position, 1.0 - exp(-camera_smoothing * delta))
 
 
-func start_level_01():
-	SceneManager.start_level(level_data)
+func start_level_selected():
+	if WorldMapManager.selected_tiles_count == 0:
+		return
+	SceneManager.start_level()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:

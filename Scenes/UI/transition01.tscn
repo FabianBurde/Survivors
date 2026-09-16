@@ -1,0 +1,122 @@
+[gd_scene format=3 uid="uid://cmrw0l7bkxuxo"]
+
+[sub_resource type="Shader" id="Shader_162p8"]
+code = "shader_type canvas_item;
+
+// ========================
+// 输入纹理
+// ========================
+uniform sampler2D from_tex;
+uniform sampler2D to_tex;
+
+// ========================
+// 过渡控制
+// ========================
+uniform float progress : hint_range(0.0, 1.0) = 0.0;
+
+// ========================
+// Zoom Blur 参数
+// ========================
+uniform float blur_strength : hint_range(0.0, 1.0) = 0.3;
+uniform int samples : hint_range(4, 32) = 20;
+uniform vec2 blur_center = vec2(0.5, 0.5);
+
+// ========================
+// 缓动函数
+// ========================
+float exponential_ease_in_out(float t) {
+	if (t <= 0.0 || t >= 1.0) return t;
+	t *= 2.0;
+	if (t < 1.0)
+		return 0.5 * pow(2.0, 10.0 * (t - 1.0));
+	return 0.5 * (-pow(2.0, -10.0 * (t - 1.0)) + 2.0);
+}
+
+// ========================
+// Cross fade
+// ========================
+vec4 cross_fade(vec2 uv, float dissolve) {
+	vec4 from_col = texture(from_tex, uv);
+	vec4 to_col   = texture(to_tex, uv);
+	return mix(from_col, to_col, dissolve);
+}
+
+// ========================
+// Fragment
+// ========================
+void fragment() {
+	vec2 uv = UV;
+
+	// 最终的清晰采样（永远正确）
+	vec4 clean_to = texture(to_tex, uv);
+
+	// dissolve 用于 from → to
+	float dissolve = exponential_ease_in_out(progress);
+
+	// blur 只在前 85% 生效
+	float blur_mix = 1.0 - smoothstep(0.85, 1.0, progress);
+
+	// blur 强度
+	float strength = sin(progress * PI) * blur_strength * blur_mix;
+
+	vec2 to_center = blur_center - uv;
+
+	vec4 blurred = vec4(0.0);
+	float total = 0.0;
+
+	for (int i = 0; i < samples; i++) {
+		float percent = float(i) / float(samples - 1);
+		float weight = percent * (1.0 - percent);
+
+		vec2 sample_uv = uv + to_center * percent * strength;
+		blurred += cross_fade(sample_uv, dissolve) * weight;
+		total += weight;
+	}
+
+	blurred /= max(total, 0.0001);
+
+	// 顺滑回到清晰 to_tex
+	COLOR = mix(blurred, clean_to, 1.0 - blur_mix);
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_162p8"]
+offsets = PackedFloat32Array(0.0074626864, 0.06716418, 0.12686567)
+colors = PackedColorArray(0, 0, 0, 0.08602142, 0, 0, 0, 0.4708545, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_st1dq"]
+gradient = SubResource("Gradient_162p8")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0.7)
+
+[sub_resource type="Gradient" id="Gradient_v3nbm"]
+offsets = PackedFloat32Array(0.18656716, 0.51492536, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.1882353, 0, 0, 0, 0.5803922)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kr7nh"]
+gradient = SubResource("Gradient_v3nbm")
+fill = 1
+fill_from = Vector2(0.5050505, 0.4949495)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xhosc"]
+shader = SubResource("Shader_162p8")
+shader_parameter/from_tex = SubResource("GradientTexture2D_st1dq")
+shader_parameter/to_tex = SubResource("GradientTexture2D_kr7nh")
+shader_parameter/progress = 0.0
+shader_parameter/blur_strength = 0.3
+shader_parameter/samples = 20
+shader_parameter/blur_center = Vector2(0.5, 0.5)
+
+[node name="ColorRect" type="ColorRect" unique_id=813926072]
+material = SubResource("ShaderMaterial_xhosc")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)

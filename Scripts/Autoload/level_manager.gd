@@ -20,11 +20,12 @@ func _ready() -> void:
 	#if SceneManager.current_level_data != null:
 	#    start_level(SceneManager.current_level_data)
 
-func start_level(level_data: LevelData) -> void:
+func start_level(level_data:Array[LevelMapData]) -> void:
 	reset_level_stats()
 	start_player_level = PlayerXP.current_level
-	total_duration = level_data.survive_duration
+	total_duration = 120.0
 	time_remaining = total_duration
+	await get_tree().create_timer(1.2).timeout
 	is_level_active = true
 	CollisionManager.enable()
 
@@ -58,7 +59,7 @@ func add_xp_collected(amount: float) -> void:
 func _get_level_summary() -> Dictionary:
 	return {
 		"won": false,
-		"level_name": SceneManager.current_level_data.level_name if SceneManager.current_level_data != null else "Unknown",
+		"level_name": "DemoLevel1",#SceneManager.current_level_data.level_name if SceneManager.current_level_data != null else "Unknown",
 		"total_kills": total_kills,
 		"xp_collected": xp_collected,
 		"levels_gained": max(PlayerXP.current_level - start_player_level, 0),

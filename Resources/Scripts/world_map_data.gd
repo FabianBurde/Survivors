@@ -15,4 +15,5 @@ enum TileType {
 @export var grid_pos: Vector2i = Vector2i.ZERO
 @export var tile_type: TileType = TileType.PLAINS
 @export var base_difficulty: float = 1.0
+@export var survive_duration: float = 60.0
 var is_conquered: bool = false

@@ -33,6 +33,8 @@ func reset_for_level() -> void:
 	_prewarm_pool()
 	current_basic_type = basic_enemy_type_zone1
 	big_spawn_timer = 0.0
+	horde_timer = 0.0
+	spawn_timer = 0.0
 	milestones_triggered.clear()
 
 func _clear_pool() -> void:
@@ -56,7 +58,7 @@ func _physics_process(delta: float) -> void:
 	spawn_timer += delta
 	horde_timer += delta
 	big_spawn_timer += delta
-	var current_interval: float = _get_scaled_spawn_interval()
+	var current_interval: float = 1.0#_get_scaled_spawn_interval()
 	if spawn_timer >= current_interval:
 		spawn_timer = 0.0
 		spawn_enemy(current_basic_type)
