@@ -5,4 +5,5 @@
 
 [resource]
 script = ExtResource("1_bs5gr")
+display_name = "Orc_01"
 sprite_frames = ExtResource("2_lqbak")

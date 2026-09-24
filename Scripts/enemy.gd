@@ -1,6 +1,7 @@
 class_name Enemy
 extends Node2D
 
+var enemey_type: String = "none"
 var radius = 12.0
 var max_hp = 20
 var hp = 20
@@ -32,7 +33,7 @@ func debug_apply_burn() -> void:
 	})
 
 func _physics_process(delta: float) -> void:
-	if not is_active or is_dead:
+	if not is_active or is_dead or not LevelManager.is_level_active:
 		return
 	_tick_status_effects(delta)
 	# ... existing movement, but movement speed reads a "slowed" multiplier from status_effects
@@ -157,13 +158,14 @@ func die() -> void:
 	is_dead = true
 	if status_effects.has("burning"):
 		_trigger_fire_explosion()
-	LevelManager.record_enemy_killed(last_damage_source)
+	LevelManager.record_enemy_killed(last_damage_source, enemey_type)
 	XpOrbManager.spawn_orb(position, xp_value)
 	EnemyManager.despawn_enemy(self)
 	#await sprite.play("die").finished
 	deactivate()
 
 func activate(spawn_pos: Vector2, type_data: EnemyTypeData) -> void:
+	enemey_type = type_data.display_name
 	position = spawn_pos
 	max_hp = type_data.max_hp
 	hp = max_hp

@@ -52,14 +52,22 @@ layout_mode = 2
 size_flags_vertical = 3
 color = Color(0.1584723, 0.15847233, 0.1584723, 1)
 
-[node name="SummaryContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/ColorRect" unique_id=399325011]
-unique_name_in_owner = true
+[node name="HB" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/ColorRect" unique_id=157602369]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 24
+
+[node name="SummaryContainerL" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/ColorRect/HB" unique_id=399325011]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SummaryContainerR" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/ColorRect/HB" unique_id=159490192]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="TextureButton" type="TextureButton" parent="MarginContainer/VBoxContainer" unique_id=1548740725]
 layout_mode = 2

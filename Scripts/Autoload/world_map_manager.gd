@@ -38,7 +38,7 @@ func _is_adjacent_to_home_or_conquered(coord: Vector2i) -> bool:
 	if coord == HOME_TILE_COORD:
 		return true
 	for neighbor in get_neighbors(coord):
-		if neighbor == HOME_TILE_COORD or conquered_tiles.has(neighbor) or selected_tiles.has(neighbor):
+		if neighbor == HOME_TILE_COORD or conquered_tiles.has(neighbor):
 			return true
 	return false
 
@@ -51,7 +51,9 @@ func can_select(coord: Vector2i) -> bool:
 		return false
 	if selected_tiles.size() >= selected_tile_limit:
 		return false
-	return _is_adjacent_to_home_or_conquered(coord)
+	var would_select: Array[Vector2i] = selected_tiles.duplicate()
+	would_select.append(coord)
+	return _is_valid_selection_group(would_select)
 
 func refresh_selected_count() -> void:
 	selected_tiles_count = selected_tiles.size()
@@ -60,7 +62,7 @@ func toggle_tile(coord: Vector2i) -> bool:
 	if selected_tiles.has(coord):
 		var would_remain: Array[Vector2i] = selected_tiles.duplicate()
 		would_remain.erase(coord)
-		if would_remain.is_empty() or _is_connected_group(would_remain):
+		if _is_valid_selection_group(would_remain):
 			selected_tiles.erase(coord)
 			refresh_selected_count()
 			return true
@@ -87,3 +89,13 @@ func _is_connected_group(group: Array[Vector2i]) -> bool:
 				to_visit.append(neighbor)
 
 	return visited.size() == group.size()
+
+func _is_valid_selection_group(group: Array[Vector2i]) -> bool:
+	if group.is_empty():
+		return true
+	if not _is_connected_group(group):
+		return false
+	for coord in group:
+		if _is_adjacent_to_home_or_conquered(coord):
+			return true
+	return false

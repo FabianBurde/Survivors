@@ -1,7 +1,8 @@
 extends Control
 
 @onready var title_label: RichTextLabel = $MarginContainer/VBoxContainer/Title
-@onready var summary_container: VBoxContainer = $MarginContainer/VBoxContainer/MarginContainer/ColorRect/SummaryContainer
+@onready var summary_container_l: VBoxContainer = $MarginContainer/VBoxContainer/MarginContainer/ColorRect/HB/SummaryContainerL
+@onready var summary_container_r: VBoxContainer = $MarginContainer/VBoxContainer/MarginContainer/ColorRect/HB/SummaryContainerR
 @onready var confirm_button: TextureButton = $MarginContainer/VBoxContainer/TextureButton
 
 func _ready() -> void:
@@ -29,14 +30,32 @@ func set_summary(result: Dictionary) -> void:
 		var label = Label.new()
 		label.text = lines[i]
 		label.modulate = Color(1, 1, 1, 0)
-		summary_container.add_child(label)
+		summary_container_l.add_child(label)
 
 		var delay_time: float = i * 1.0
 		var tween = create_tween()
 		tween.tween_property(label, "modulate:a", 1.0, delay_time + 0.3)
 
+	if result.has("enemies_killed_name"):
+		var enemy_title := Label.new()
+		enemy_title.text = "Enemies Defeated:"
+		enemy_title.modulate = Color(1, 1, 1, 0)
+		summary_container_r.add_child(enemy_title)
+		var title_tween = create_tween()
+		title_tween.tween_property(enemy_title, "modulate:a", 1.0, 0.3)
+
+		for enemy_name in result["enemies_killed_name"].keys():
+			var enemy_label := Label.new()
+			enemy_label.text = "  %s: %s" % [enemy_name, str(result["enemies_killed_name"][enemy_name])]
+			enemy_label.modulate = Color(1, 1, 1, 0)
+			summary_container_r.add_child(enemy_label)
+			var enemy_tween = create_tween()
+			enemy_tween.tween_property(enemy_label, "modulate:a", 1.0, 0.6)
+
 func _clear_summary() -> void:
-	for child in summary_container.get_children():
+	for child in summary_container_l.get_children():
+		child.queue_free()
+	for child in summary_container_r.get_children():
 		child.queue_free()
 
 func _on_confirm_pressed() -> void:

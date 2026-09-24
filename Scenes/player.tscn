@@ -34,7 +34,7 @@ starting_element = "fire"
 
 [node name="BowWeapon" parent="." unique_id=1299626495 instance=ExtResource("5_3smsa")]
 base_damage = 4.0
-projectile_count = 4
+projectile_count = 1
 speed = 400.0
 radius = 5.0
 lifetime = 1.5
@@ -44,6 +44,7 @@ cooldown = 0.4
 
 [node name="FireBallWeapon" parent="." unique_id=820506679 instance=ExtResource("6_8erm5")]
 base_damage = 2.0
+projectile_count = 1
 elements = Array[String](["lightning"])
 
 [node name="SwordWeaponDebug" parent="." unique_id=93683505 instance=ExtResource("7_3smsa")]

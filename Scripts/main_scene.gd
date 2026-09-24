@@ -140,9 +140,12 @@ func handle_arrow():
 
 func _on_level_end() -> void:
 	player.can_control = false
-	level_summary.set_summary(SceneManager.last_run_result)
 	level_summary.show()
+	level_summary.set_summary(SceneManager.last_run_result)
 
 func _debug_return_to_world_map() -> void:
 	LevelManager._win_level()
 	SceneManager.return_to_world_map({})
+
+func _debug_win_level() -> void:
+	LevelManager._win_level()

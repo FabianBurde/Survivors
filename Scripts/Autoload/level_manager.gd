@@ -13,6 +13,7 @@ var total_kills: int = 0
 var xp_collected: float = 0.0
 var start_player_level: int = 1
 var kills_by_weapon: Dictionary = {}
+var enemies_killed_name: Dictionary = {}
 
 func _ready() -> void:
 	pass
@@ -34,6 +35,7 @@ func reset_level_stats() -> void:
 	xp_collected = 0.0
 	start_player_level = PlayerXP.current_level
 	kills_by_weapon = {}
+	enemies_killed_name = {}
 
 func _physics_process(delta: float) -> void:
 	if not is_level_active:
@@ -49,9 +51,10 @@ func extend_time(amount: float) -> void:
 	time_remaining += amount
 	time_extended.emit(time_remaining)
 
-func record_enemy_killed(weapon_name: String = "Unknown") -> void:
+func record_enemy_killed(weapon_name: String = "Unknown", enemy_name: String = "Unknown") -> void:
 	total_kills += 1
 	kills_by_weapon[weapon_name] = kills_by_weapon.get(weapon_name, 0) + 1
+	enemies_killed_name[enemy_name] = enemies_killed_name.get(enemy_name, 0) + 1
 
 func add_xp_collected(amount: float) -> void:
 	xp_collected += amount
@@ -64,15 +67,16 @@ func _get_level_summary() -> Dictionary:
 		"xp_collected": xp_collected,
 		"levels_gained": max(PlayerXP.current_level - start_player_level, 0),
 		"kills_by_weapon": kills_by_weapon,
+		"enemies_killed_name": enemies_killed_name,
 	}
 
 func _win_level() -> void:
 	is_level_active = false
 	CollisionManager.disable()
-	level_won.emit()
 	var result = _get_level_summary()
 	result["won"] = true
 	SceneManager.last_run_result = result
+	level_won.emit()
 
 func report_player_death() -> void:
 	if not is_level_active:

@@ -483,12 +483,22 @@ layout_mode = 1
 
 [node name="Button" type="Button" parent="UI/Control" unique_id=321775473]
 layout_mode = 0
-offset_left = 870.0
-offset_right = 1011.0
-offset_bottom = 46.0
+offset_left = 1051.0
+offset_top = 143.0
+offset_right = 1146.0217
+offset_bottom = 174.0
 text = "Return"
 
+[node name="Button2" type="Button" parent="UI/Control" unique_id=2043665667]
+layout_mode = 0
+offset_left = 1053.0
+offset_top = 179.0
+offset_right = 1146.7097
+offset_bottom = 214.0
+text = "Win Level"
+
 [node name="Transition" parent="UI" unique_id=813926072 instance=ExtResource("18_oyb3p")]
+visible = false
 
 [node name="UnitSpawns" type="Node2D" parent="." unique_id=1086486801]
 
@@ -532,4 +542,5 @@ autostart = true
 script = ExtResource("17_psl12")
 
 [connection signal="pressed" from="UI/Control/Button" to="." method="_debug_return_to_world_map"]
+[connection signal="pressed" from="UI/Control/Button2" to="." method="_debug_win_level"]
 [connection signal="timeout" from="InitialTimer" to="." method="reset_for_level"]

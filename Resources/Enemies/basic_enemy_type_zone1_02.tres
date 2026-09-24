@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_wtari")
+display_name = "Orc_02"
 max_hp = 50.0
 speed = 40.0
 sprite_frames = ExtResource("2_kgkfi")

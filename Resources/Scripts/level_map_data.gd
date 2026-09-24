@@ -10,7 +10,7 @@ static func build_from_selection(selected: Array[Vector2i], world_tiles: Diction
 
 	# TODO Maps selection to relative 0,0 0,1 etc.
 	# Re-center: shift all selected coords so their average sits near origin
-	var center: Vector2i = _compute_center(selected)
+	var center: Vector2i = selected[0]#_compute_center(selected)
 
 	for hex_coord in selected:
 		var relative_coord: Vector2i = hex_coord - center
